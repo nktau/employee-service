@@ -7,7 +7,7 @@ import (
 
 type Config struct {
 	ListenAddress string
-	DatabaseDSN   string
+	DatabaseURL   string
 }
 
 func New() Config {
@@ -19,7 +19,7 @@ func New() Config {
 }
 func (cfg *Config) parseFlags() {
 	flag.StringVar(&cfg.ListenAddress, "a", "localhost:8080", "address and port to run server")
-	flag.StringVar(&cfg.DatabaseDSN, "d", "",
+	flag.StringVar(&cfg.DatabaseURL, "d", "postgres://employee_service:mysecretpassword@localhost:5432/employee_service?sslmode=disable",
 		"database dsn")
 	flag.Parse()
 }
@@ -29,6 +29,6 @@ func (cfg *Config) parseEnv() {
 		cfg.ListenAddress = envRunAddr
 	}
 	if value, ok := os.LookupEnv("DATABASE_DSN"); ok {
-		cfg.DatabaseDSN = value
+		cfg.DatabaseURL = value
 	}
 }
