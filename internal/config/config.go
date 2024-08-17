@@ -19,7 +19,7 @@ func New() Config {
 }
 func (cfg *Config) parseFlags() {
 	flag.StringVar(&cfg.ListenAddress, "a", "localhost:8080", "address and port to run server")
-	flag.StringVar(&cfg.DatabaseURL, "d", "postgres://employee_service:mysecretpassword@localhost:5432/employee_service?sslmode=disable",
+	flag.StringVar(&cfg.DatabaseURL, "d", "postgres://postgres:mysecretpassword@localhost:5433/employee_service?sslmode=disable",
 		"database dsn")
 	flag.Parse()
 }

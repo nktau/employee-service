@@ -1,6 +1,9 @@
 Можно еще добавить тест кейсы на остальные хендлеры, graceful shutdown, привести в порядок код, добавить документацию,
 но желания заниматься этим в тестовом задании как-то не особо.
 
+
+
+
 Задание:
 Web-Сервис сотрудников, сделанный на Golang Сервис должен уметь:
 1. Добавлять сотрудников, в ответ должен приходить Id добавленного сотрудника.
@@ -17,7 +20,7 @@ curl localhost:8080/employee/3 -X DELETE
 
 3. Выводить список сотрудников для указанной компании. Все доступные поля.
 ```
-curl localhost:8080/company/555 -X GET -v
+curl localhost:8080/company/3 -X GET -v
 ```
 
 
@@ -59,4 +62,17 @@ curl localhost:8080/employee/5 -X PATCH -d '{"Name":"NewName123;drop table emplo
 ```
 mockgen -destination=mocks/mock_storage.go -package=mocks  github.com/nktau/employee-service/internal/storagelayer Storage
 
+```
+
+Запуск базы:
+```
+docker run -d --name employee_service_postgres -e POSTGRES_PASSWORD=mysecretpassword -v ./pg_data:/var/lib/postgresql/data -p 5433:5432 --rm postgres:14
+```
+запуск приложения:
+```
+go run cmd/main.go
+```
+запуск тестов:
+```
+go test ./...
 ```

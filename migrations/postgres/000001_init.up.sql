@@ -9,8 +9,3 @@ create table if not exists employees (
     departmentName varchar(64),
     departmentPhone varchar(32)
 );
-
-
-     varchar(32),
-     varchar(64),
-     varchar(32)
