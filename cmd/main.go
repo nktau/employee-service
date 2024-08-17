@@ -7,6 +7,7 @@ import (
 	log "github.com/nktau/employee-service/internal/logger"
 	"github.com/nktau/employee-service/internal/storagelayer"
 	"github.com/nktau/employee-service/migrations"
+	"go.uber.org/zap"
 )
 
 func main() {
@@ -18,6 +19,6 @@ func main() {
 	api := httplayer.New(app, logger)
 	err := api.Start()
 	if err != nil {
-		logger.Fatal("failed to start api")
+		logger.Fatal("failed to start api ", zap.Error(err))
 	}
 }
